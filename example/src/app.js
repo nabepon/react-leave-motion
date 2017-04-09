@@ -35,51 +35,50 @@ export default class Demo extends Component {
   render() {
     const key = this.state.currentItem;
 
+    // react-motionのspringを返す
     const getSpring = (val) => {
-      const springData = {
-        noWobble: {stiffness: 170, damping: 26},
-        gentle  : {stiffness: 120, damping: 14},
-        wobbly  : {stiffness: 180, damping: 12},
-        stiff   : {stiffness: 210, damping: 20},
-      };
       return {
         val,
-        ...springData.noWobble,
+        stiffness: 170,
+        damping: 26,
         precision: 0.01
       };
     };
 
     const motionConfig = key === 'k2' ? {
-        itemKey     : key,
-        defaultStyle: {left: 300, opacity: 0},
-        style       : {left: getSpring(160), opacity: getSpring(1)},
-        willLeave   : ()=>({left: getSpring(220), opacity: getSpring(0)}),
-      }:{
-        itemKey     : key,
-        defaultStyle: {left: 0, opacity: 0},
-        style       : {left: getSpring( 60), opacity: getSpring(1)},
-        willLeave   : ()=>({left: getSpring(120), opacity: getSpring(0)}),
-      };
+      itemKey     : key,
+      defaultStyle: {left: 300, opacity: 0},
+      style       : {left: getSpring(160), opacity: getSpring(1)},
+      willLeave   : ()=>({left: getSpring(220), opacity: getSpring(0)}),
+      onRest      : ()=>{},
+    }:{
+      itemKey     : key,
+      defaultStyle: {left: 0, opacity: 0},
+      style       : {left: getSpring( 60), opacity: getSpring(1)},
+      willLeave   : ()=>({left: getSpring(120), opacity: getSpring(0)}),
+      onRest      : ()=>{},
+    };
 
     const tweenConfig = key === 'k2' ? {
-        itemKey      : key,
-        defaultStyle : {left: 300, opacity: 0},
-        style        : {left: 160, opacity: 1},
-        willLeave    : ()=>({left: 220, opacity: 0}),
-        leaveDelay   : 200,
-        leaveDuration: 1000,
-      }:{
-        itemKey      : key,
-        defaultStyle : {left:   0, opacity: 0},
-        style        : {left:  60, opacity: 1},
-        willLeave    : ()=>({left: 120, opacity: 0}),
-        leaveDelay   : 200,
-        leaveDuration: 1000,
-      };
+      itemKey      : key,
+      defaultStyle : {left: 300, opacity: 0},
+      style        : {left: 160, opacity: 1},
+      willLeave    : ()=>({left: 220, opacity: 0}),
+      onRest       : ()=>{},
+      leaveDelay   : 200,
+      leaveDuration: 1000,
+    }:{
+      itemKey      : key,
+      defaultStyle : {left:   0, opacity: 0},
+      style        : {left:  60, opacity: 1},
+      willLeave    : ()=>({left: 120, opacity: 0}),
+      onRest       : ()=>{},
+      leaveDelay   : 200,
+      leaveDuration: 1000,
+    };
 
     return (
       <div onClick={this.handleClick} className={css.demoContainer}>
-
         <LeaveMotion {...motionConfig} containerProps={{className:css.leaveMotionContainer, component:'i'}}>
           {key === "k4" ? null : style => <span style={{top: "200px", ...style}}>Motion {motionConfig.itemKey}</span>}
         </LeaveMotion>
