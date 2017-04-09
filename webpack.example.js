@@ -59,7 +59,8 @@ if(env === 'development') {
 }
 
 if(env === 'production') {
-  config.output.filename = '[name].min.js';
+  config.output.filename = '[name].js';
+  config.devtool = 'source-map';
   config.plugins.push(
     new webpack.optimize.UglifyJsPlugin({
       compressor: {
