@@ -1,0 +1,78 @@
+{
+  "name": "react-leave-motion",
+  "version": "0.4.0",
+  "description": "Tween library for leave element.",
+  "author": "Takaaki Watanabe",
+  "browser": "dist/react-leave-motion.js",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "jsnext:main": "es/index.js",
+  "files": [
+    "dist",
+    "lib",
+    "es",
+    "src"
+  ],
+  "scripts": {
+    "example": "cross-env NODE_ENV=server webpack-dev-server --config webpack.example.js",
+    "example:build": "npm run example:src && npm run example:src:min && npm run example:es5:lib && npm run example:es5:lib:min",
+    "example:src": "cross-env NODE_ENV=development webpack --verbose --colors --display-error-details --config webpack.example.js",
+    "example:src:min": "cross-env NODE_ENV=production webpack --verbose --colors --display-error-details --config webpack.example.js",
+    "example:es5:lib": "cross-env BABEL_ENV=commonjs NODE_ENV=development webpack src/index.js example/es5/lib/react-leave-motion.js",
+    "example:es5:lib:min": "cross-env BABEL_ENV=commonjs NODE_ENV=production webpack src/index.js example/es5/lib/react-leave-motion.min.js",
+    "prepublish": "npm run clean && npm run lint && npm run test && npm run build && npm run example:build",
+    "clean": "rimraf dist lib es example/dist",
+    "lint": "eslint -c .eslintrc src",
+    "test": "cross-env NODE_ENV=test mocha --compilers js:babel-register --recursive ./test",
+    "build": "npm run build:commonjs && npm run build:es && npm run build:umd && npm run build:umd:min",
+    "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir lib",
+    "build:es": "cross-env BABEL_ENV=es babel src --out-dir es",
+    "build:umd": "cross-env BABEL_ENV=commonjs NODE_ENV=development webpack src/index.js dist/react-leave-motion.js",
+    "build:umd:min": "cross-env BABEL_ENV=commonjs NODE_ENV=production webpack src/index.js dist/react-leave-motion.min.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:nabepon/react-leave-motion.git"
+  },
+  "keywords": [
+    "react-motion",
+    "react-tween",
+    "react-leave-motion",
+    "transition-group"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nabepon/react-leave-motion/issues"
+  },
+  "homepage": "https://github.com/nabepon/react-leave-motion#readme",
+  "devDependencies": {
+    "css-loader": "0.23.1",
+    "postcss-loader": "0.8.2",
+    "sass-loader": "3.2.0",
+    "style-loader": "0.13.1",
+    "node-sass": "3.7.0",
+    "babel-cli": "^6.18.0",
+    "babel-core": "^6.20.0",
+    "babel-eslint": "^7.1.1",
+    "babel-loader": "^6.2.10",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-stage-0": "^6.16.0",
+    "babel-register": "^6.3.13",
+    "cross-env": "^1.0.7",
+    "eslint": "^1.10.3",
+    "eslint-config-airbnb": "0.1.0",
+    "eslint-loader": "1.3.0",
+    "eslint-plugin-import": "^2.2.0",
+    "rimraf": "^2.3.4",
+    "webpack": "^1.14.0",
+    "webpack-dev-server": "^1.16.2"
+  },
+  "dependencies": {
+    "babel-preset-react": "^6.24.1",
+    "react": "15.3.0",
+    "react-dom": "15.3.0",
+    "react-addons-transition-group": "15.3.0",
+    "react-motion": "^0.4.7",
+    "react-tween": "^0.4.0-alpha.16"
+  }
+}

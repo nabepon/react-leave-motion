@@ -1,0 +1,18 @@
+.demoContainer {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background-color: #EEE;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: -webkit-flex;
+  -webkit-justify-content: center;
+  -webkit-align-items: center;
+
+  .leaveMotionContainer *,
+  .leaveTweenContainer *,
+  .leaveTransitionGroupContainer *{
+    position: absolute;
+  }
+}
