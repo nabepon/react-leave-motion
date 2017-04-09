@@ -62,6 +62,11 @@ if(env === 'production') {
   config.output.filename = '[name].js';
   config.devtool = 'source-map';
   config.plugins.push(
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('production')
+      }
+    }),
     new webpack.optimize.UglifyJsPlugin({
       compressor: {
         pure_getters: true,

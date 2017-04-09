@@ -1,14 +1,12 @@
 {
   "name": "react-leave-motion",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Tween library for leave element.",
   "author": "Takaaki Watanabe",
-  "browser": "dist/react-leave-motion.js",
   "main": "lib/index.js",
   "module": "es/index.js",
   "jsnext:main": "es/index.js",
   "files": [
-    "dist",
     "lib",
     "es",
     "src"
@@ -20,11 +18,9 @@
     "clean": "rimraf dist lib es example/dist",
     "lint": "eslint -c .eslintrc src",
     "test": "cross-env NODE_ENV=test mocha --compilers js:babel-register --recursive ./test",
-    "build": "npm run build:commonjs && npm run build:es && npm run build:umd && npm run build:umd:min",
+    "build": "npm run build:commonjs && npm run build:es",
     "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir lib",
-    "build:es": "cross-env BABEL_ENV=es babel src --out-dir es",
-    "build:umd": "cross-env BABEL_ENV=commonjs NODE_ENV=development webpack src/index.js dist/react-leave-motion.js",
-    "build:umd:min": "cross-env BABEL_ENV=commonjs NODE_ENV=production webpack src/index.js dist/react-leave-motion.min.js"
+    "build:es": "cross-env BABEL_ENV=es babel src --out-dir es"
   },
   "repository": {
     "type": "git",
