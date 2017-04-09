@@ -1,6 +1,6 @@
 {
   "name": "react-leave-motion",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Tween library for leave element.",
   "author": "Takaaki Watanabe",
   "browser": "dist/react-leave-motion.js",

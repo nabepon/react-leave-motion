@@ -23,7 +23,7 @@
 ```jsx
 <LeaveMotion defaultStyle={{x: 0}} style={{x: spring(10)}}>
   {interpolatingStyle => <div style={interpolatingStyle} />}
-</Motion>
+</LeaveMotion>
 ```
 
 ## \<LeaveTween />
@@ -31,5 +31,5 @@
 ```jsx
 <LeaveTween defaultStyle={{x: 0}} style={{x: 10}}>
   {interpolatingStyle => <div style={interpolatingStyle} />}
-</Motion>
+</LeaveTween>
 ```
